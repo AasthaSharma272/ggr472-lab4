@@ -5,23 +5,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GGR472 Lab 4</title>
-    <!-- mapbox API -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css' rel='stylesheet' />
+    <title>Toronto Pedestrian and Cyclist Collisions Hexgrid Map</title>
+
+    <!-- Mapbox API -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet" />
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
     <!-- Turf.js -->
-    <script src='https://unpkg.com/@turf/turf@7.2.0/turf.min.js'></script>
+    <script src="https://unpkg.com/@turf/turf@7.2.0/turf.min.js"></script>
 </head>
 
 <body>
+    <!-- Map container -->
+    <div id="map" class="map"></div>
 
-    <!-- MAP CONTAINER -->
-    <div id='map' class='map'></div>
+    <!-- Map title -->
+    <div id="title" class="map-overlay">
+        <h2>Toronto Pedestrian and Cyclist Collisions, 2006–2021</h2>
+        <p>Hexgrid aggregation of reported road collisions involving pedestrians and cyclists.</p>
+    </div>
+
+    <!-- Legend -->
+    <div id="legend" class="map-overlay legend">
+        <h3>Map Legend</h3>
+        <!-- Collision point -->
+        <div class="legend-item">
+            <span class="legend-point"></span>
+            <span>Collision Location</span>
+        </div>
+        <div class="legend-divider"></div>
+        <!-- Hotspot -->
+        <div class="legend-item">
+            <span class="legend-hotspot"></span>
+            <span>High Collision Hotspots</span>
+        </div>
+        <div class="legend-divider"></div>
+        <!-- Hexgrid -->
+        <div class="legend-title">Collisions per Hexagon</div>
+        <div class="legend-gradient"></div>
+        <div class="legend-labels">
+            <span>1</span>
+            <span id="legend-max">High</span>
+        </div>
+    </div>
+
+    <!-- Button -->
+    <div id="controls" class="map-overlay controls">
+        <button id="toggle-points">Toggle Collision Points</button>
+        <button id="toggleHex">Toggle Hexgrid</button>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
 
 </html>
